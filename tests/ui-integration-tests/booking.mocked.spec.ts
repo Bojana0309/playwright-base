@@ -7,6 +7,7 @@ test.describe('Booking - mocked API', () => {
   let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {
+    console.log('test husky and lint-staged');
     homePage = new HomePage(page);
     // Mock GET /room request
     await page.route('room/', async (route) => {
