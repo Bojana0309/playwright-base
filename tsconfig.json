@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["tests/**/*", "pages/*", "utils/*", "playwright.config.ts"]
+}

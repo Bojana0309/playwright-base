@@ -1,0 +1,10 @@
+{
+  "roomid": 101,
+  "roomName": "Mocked room - 101 IS EDITED",
+  "type": "Twin",
+  "accessible": true,
+  "image": "https://www.mwtestconsultancy.co.uk/img/room1.jpg",
+  "description": "This room is EDITED",
+  "features": ["WiFi", "TV", "Radio", "Safe", "Views"],
+  "roomPrice": 110
+}
