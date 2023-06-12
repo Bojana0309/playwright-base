@@ -56,7 +56,6 @@ test.describe('GET /booking', () => {
     expect(bookingResponse.status()).toBe(200);
 
     resBody = await bookingResponse.json();
-    console.log('resbody', resBody);
     expect(resBody.bookings.length).toEqual(1);
     expect(resBody.bookings[0].roomid).toEqual(roomid);
     expect(resBody.bookings[0].bookingid).toEqual(bookingid);

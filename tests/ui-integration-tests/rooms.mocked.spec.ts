@@ -24,7 +24,6 @@ test.describe('Rooms - mocked API', () => {
 
       // Mock GET /room/roomid request
       await page.route('room/101', async (route) => {
-        console.log('room101', rooms.rooms[0]);
         route.fulfill({
           status: 200,
           body: JSON.stringify(rooms.rooms[0])

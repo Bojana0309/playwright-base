@@ -9,6 +9,7 @@
   "author": "Levi9",
   "license": "ISC",
   "scripts": {
+    "prepare": "husky install",
     "test:all": "set TEST_ENV=production && npx playwright test",
     "test:api": "set TEST_ENV=production && npx playwright test api-tests",
     "test:ui:e2e": "set TEST_ENV=production && npx playwright test ui-e2e-tests",
@@ -17,8 +18,8 @@
     "test:ui:integration": "set TEST_ENV=production && npx playwright test ui-integration-tests",
     "test:ui:integration:headed": "set TEST_ENV=production && npx playwright test ui-integration-tests --headed",
     "test:ui:integration:debug": "set TEST_ENV=production && npx playwright test ui-integration-tests --debug",
-    "open:report": "npx playwright show-report",
-    "prepare": "husky install"
+    "open:report": "npx playwright show-report"
+    
   },
   "devDependencies": {
     "@playwright/test": "^1.33.0",
