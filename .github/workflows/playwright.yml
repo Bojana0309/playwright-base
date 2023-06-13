@@ -18,8 +18,22 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Playwright API tests
+        run: npx playwright test api-tests
+        env:
+          BASE_URL: ${{vars.BASE_URL}}
+          PW_USERNAME: ${{vars.PW_USERNAME}}
+          PW_PASSWORD: ${{secrets.PW_PASSWORD}}
+          CI: true
+      - name: Run Playwright UI integration tests
+        run: npx playwright test ui-integration-tests
+        env:
+          BASE_URL: ${{vars.BASE_URL}}
+          PW_USERNAME: ${{vars.PW_USERNAME}}
+          PW_PASSWORD: ${{secrets.PW_PASSWORD}}
+          CI: true
+      - name: Run Playwright UI E2E tests
+        run: npx playwright test ui-e2e-tests
         env:
           BASE_URL: ${{vars.BASE_URL}}
           PW_USERNAME: ${{vars.PW_USERNAME}}
