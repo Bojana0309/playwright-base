@@ -18,8 +18,8 @@
     "test:ui:integration": "set TEST_ENV=production && npx playwright test ui-integration-tests",
     "test:ui:integration:headed": "set TEST_ENV=production && npx playwright test ui-integration-tests --headed",
     "test:ui:integration:debug": "set TEST_ENV=production && npx playwright test ui-integration-tests --debug",
-    "open:report": "npx playwright show-report"
-    
+    "open:report": "npx playwright show-report",
+    "merge:reports": "tsx merge-reports.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.33.0",
@@ -36,6 +36,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
+    "playwright-merge-html-reports": "^0.2.8",
     "prettier": "2.8.8",
     "typescript": "^5.0.4"
   }
