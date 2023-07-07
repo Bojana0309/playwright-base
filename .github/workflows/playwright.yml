@@ -140,8 +140,7 @@ jobs:
         run: npm run merge:reports
       - name: Move to merged-report folder
         id: move-to-merged-report-folder
-        run: |
-          mv merged-html-report merged-report/
+        run: mv merged-html-report merged-report/
         shell: bash
       - name: Upload Merged Playwright HTML Report
         id: upload-merged-playwright-html-report
