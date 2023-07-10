@@ -138,6 +138,11 @@ jobs:
       - name: Merge Playwright HTML Reports
         id: merge-playwright-html-reports
         run: npm run merge:reports
+      - name: Move to merged-report folder
+        id: move-to-merged-report-folder
+        run: |
+          mv merged-html-report merged-report/
+        shell: bash
       - name: Upload Merged Playwright HTML Report
         id: upload-merged-playwright-html-report
         uses: actions/upload-artifact@v3
