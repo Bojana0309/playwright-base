@@ -76,8 +76,6 @@ jobs:
           path: |
             ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('package-lock.json') }}
-      # Playwright caches the browser binaries, but not their dependencies.
-      # Those extra browser dependencies must be installed separately when the cached browsers are restored.
       - name: Install Playwright System Dependencies
         id: install-playwright-system-dependencies
         run: npx playwright install-deps ${{ matrix.project }}
@@ -103,7 +101,7 @@ jobs:
     name: ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     needs: install
-    timeout-minutes: 60
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -133,8 +131,6 @@ jobs:
           path: |
             ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('package-lock.json') }}
-      # Playwright caches the browser binaries, but not their dependencies.
-      # Those extra browser dependencies must be installed separately when the cached browsers are restored.
       - name: Install Playwright System Dependencies
         id: install-playwright-system-dependencies
         run: npx playwright install-deps
