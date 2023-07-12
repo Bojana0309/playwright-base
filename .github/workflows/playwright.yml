@@ -43,7 +43,7 @@ jobs:
         run: npx playwright install --with-deps
 
   e2e-test:
-    name: e2e-tests - ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
+    name: E2E tests - ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     needs: install
     timeout-minutes: 60
@@ -98,16 +98,10 @@ jobs:
           retention-days: 1
 
   api-test:
-    name: ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
+    name: API tests
     runs-on: ubuntu-latest
     needs: install
     timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        project: [api-tests]
-        shardIndex: [1, 2]
-        shardTotal: [2]
     steps:
       - name: Checkout Repository
         id: checkout-repository
@@ -136,7 +130,7 @@ jobs:
         run: npx playwright install-deps
       - name: Run Playwright API tests
         id: run-playwright-tests
-        run: npx playwright test --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npx playwright test --project=api-tests
         env:
           BASE_URL: ${{vars.BASE_URL}}
           PW_USERNAME: ${{vars.PW_USERNAME}}
@@ -147,7 +141,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: playwright-report-${{ matrix.project }}-${{ matrix.shardIndex }}_${{ matrix.shardTotal }}
+          name: playwright-report-api-tests
           path: playwright-report/
           if-no-files-found: ignore
           retention-days: 1

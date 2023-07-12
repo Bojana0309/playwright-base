@@ -1,8 +1,7 @@
 import { mergeHTMLReports } from 'playwright-merge-html-reports';
 
 const inputReportPaths = [
-  process.cwd() + '/playwright-report-api-tests-1_2',
-  process.cwd() + '/playwright-report-api-tests-2_2',
+  process.cwd() + '/playwright-report-api-tests',
   process.cwd() + '/playwright-report-e2e-tests-chromium-1_2',
   process.cwd() + '/playwright-report-e2e-tests-chromium-2_2',
   process.cwd() + '/playwright-report-e2e-tests-firefox-1_2',
