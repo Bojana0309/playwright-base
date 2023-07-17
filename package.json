@@ -15,6 +15,7 @@
     "test:ui:e2e": "set TEST_ENV=production && npx playwright test ui-e2e-tests",
     "test:ui:e2e:headed": "set TEST_ENV=production && npx playwright test ui-e2e-tests --headed",
     "test:ui:e2e:debug": "set TEST_ENV=production && npx playwright test ui-e2e-tests --debug",
+    "test:ui:e2e:smoke": "set TEST_ENV=production && npx playwright test ui-e2e-tests --grep @smoke",
     "test:ui:integration": "set TEST_ENV=production && npx playwright test ui-integration-tests",
     "test:ui:integration:headed": "set TEST_ENV=production && npx playwright test ui-integration-tests --headed",
     "test:ui:integration:debug": "set TEST_ENV=production && npx playwright test ui-integration-tests --debug",

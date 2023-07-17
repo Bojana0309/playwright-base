@@ -2,7 +2,7 @@ import { test, expect, APIResponse } from '@playwright/test';
 import { HomePage } from '../../pages/home-page';
 import { bookingData, roomData } from '../../utils/test-data';
 
-test.describe('Booking', () => {
+test.describe('Booking @booking', () => {
   let response: APIResponse;
   let homePage: HomePage;
   let roomid: number;
@@ -28,7 +28,7 @@ test.describe('Booking', () => {
     response = await request.delete(`room/${roomid}`);
     expect(response.status()).toBe(202);
   });
-  test('Booking the room is successful', async ({ page }) => {
+  test('Booking the room is successful @smoke', async ({ page }) => {
     homePage = new HomePage(page);
 
     // Navigate to the home page

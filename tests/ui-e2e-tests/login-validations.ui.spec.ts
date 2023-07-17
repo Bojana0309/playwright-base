@@ -3,7 +3,7 @@ import { HomePage } from '../../pages/home-page';
 import { LoginPage } from '../../pages/login-page';
 import { invalidData } from '../../utils/test-data';
 
-test.describe('Login validations', () => {
+test.describe('Login validations @login', () => {
   let homePage: HomePage;
   let loginPage: LoginPage;
 

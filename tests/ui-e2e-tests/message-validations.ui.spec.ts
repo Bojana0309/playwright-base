@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../../pages/home-page';
 import { invalidData, messageData } from '../../utils/test-data';
 
-test.describe('Message validations', () => {
+test.describe('Message validations @message', () => {
   let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {

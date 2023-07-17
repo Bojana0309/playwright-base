@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { RoomsPage } from '../../pages/rooms-page';
 import { invalidData, roomData } from '../../utils/test-data';
 
-test.describe('Rooms validations', () => {
+test.describe('Rooms validations @rooms', () => {
   let roomsPage: RoomsPage;
 
   test.beforeEach(async ({ page }) => {

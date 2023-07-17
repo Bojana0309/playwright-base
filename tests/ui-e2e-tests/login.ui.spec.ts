@@ -3,7 +3,7 @@ import { HomePage } from '../../pages/home-page';
 import { LoginPage } from '../../pages/login-page';
 import { RoomsPage } from '../../pages/rooms-page';
 
-test.describe('Login', () => {
+test.describe('Login @login', () => {
   let homePage: HomePage;
   let loginPage: LoginPage;
   let roomsPage: RoomsPage;
@@ -24,7 +24,7 @@ test.describe('Login', () => {
     await expect(loginPage.loginHeader).toBeVisible();
   });
 
-  test('Login with valid username and password is successful', async ({
+  test('Login with valid username and password is successful @smoke', async ({
     page
   }) => {
     loginPage = new LoginPage(page);

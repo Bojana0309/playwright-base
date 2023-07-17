@@ -1,0 +1,46 @@
+name: Smoke Tests
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    name: Smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout Repository
+        id: checkout-repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        id: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        id: install-dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Install Playwright Browsers
+        id: install-playwright-browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+      - name: Run Smoke tests
+        id: run-smoke-tests
+        run: npx playwright test --grep @smoke
+        env:
+          BASE_URL: ${{vars.BASE_URL}}
+          PW_USERNAME: ${{vars.PW_USERNAME}}
+          PW_PASSWORD: ${{secrets.PW_PASSWORD}}
+          CI: true
+      - name: Upload Playwright HTML Report for Smoke tests
+        id: upload-playwright-html-report-for-smoke-tests
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report-smoke-tests
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 1

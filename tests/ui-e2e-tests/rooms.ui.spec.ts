@@ -3,7 +3,7 @@ import { RoomsPage } from '../../pages/rooms-page';
 import { bookingData, roomData } from '../../utils/test-data';
 import { HomePage } from '../../pages/home-page';
 
-test.describe('Create room', () => {
+test.describe('Create room @rooms', () => {
   let roomsPage: RoomsPage;
 
   test.beforeEach(async ({ page }) => {
@@ -24,7 +24,7 @@ test.describe('Create room', () => {
     expect(response.status()).toBe(202);
   });
 
-  test('Creating room with valid data and some room features selected is successful', async ({
+  test('Creating room with valid data and some room features selected is successful @smoke', async ({
     page
   }) => {
     roomsPage = new RoomsPage(page);

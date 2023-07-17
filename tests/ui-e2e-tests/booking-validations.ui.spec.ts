@@ -2,7 +2,7 @@ import { test, expect, APIResponse } from '@playwright/test';
 import { HomePage } from '../../pages/home-page';
 import { bookingData, invalidData, roomData } from '../../utils/test-data';
 
-test.describe('Booking validations', () => {
+test.describe('Booking validations @booking', () => {
   let response: APIResponse;
   let homePage: HomePage;
   let roomid: number;

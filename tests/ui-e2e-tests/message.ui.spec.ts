@@ -2,10 +2,12 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../../pages/home-page';
 import { messageData } from '../../utils/test-data';
 
-test.describe('Message', () => {
+test.describe('Message @message', () => {
   let homePage: HomePage;
 
-  test('Sending message with valid data is successful', async ({ page }) => {
+  test('Sending message with valid data is successful @smoke', async ({
+    page
+  }) => {
     homePage = new HomePage(page);
 
     // Navigate to the home page
