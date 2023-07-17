@@ -42,8 +42,8 @@ jobs:
         if: steps.cache-playwright.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
-  e2e-test:
-    name: E2E tests - ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
+  ui-test:
+    name: UI tests - ${{ matrix.project }} - Shard ${{ matrix.shardIndex }} of ${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
     needs: install
     timeout-minutes: 60
@@ -79,7 +79,7 @@ jobs:
       - name: Install Playwright System Dependencies
         id: install-playwright-system-dependencies
         run: npx playwright install-deps ${{ matrix.project }}
-      - name: Run Playwright E2E tests
+      - name: Run Playwright UI tests
         id: run-playwright-tests
         run: npx playwright test --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         env:
@@ -87,12 +87,12 @@ jobs:
           PW_USERNAME: ${{vars.PW_USERNAME}}
           PW_PASSWORD: ${{secrets.PW_PASSWORD}}
           CI: true
-      - name: Upload Playwright HTML Reports for E2E tests
-        id: upload-playwright-html-report-for-e2e-tests
+      - name: Upload Playwright HTML Reports for UI tests
+        id: upload-playwright-html-report-for-ui-tests
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: playwright-report-e2e-tests-${{ matrix.project }}-${{ matrix.shardIndex }}_${{ matrix.shardTotal }}
+          name: playwright-report-ui-tests-${{ matrix.project }}-${{ matrix.shardIndex }}_${{ matrix.shardTotal }}
           path: playwright-report/
           if-no-files-found: ignore
           retention-days: 1

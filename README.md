@@ -1,6 +1,6 @@
 # Playwright-Base
 
-Playwright-Base project represents small testing project, that can be used as starting point for writing tests in Typescript using [Playwright](https://playwright.dev/). Basic configuration together with the examples for API tests, UI ent-to-end tests and UI integration tests is provided.</br>
+Playwright-Base project represents small testing project, that can be used as starting point for writing tests in Typescript using [Playwright](https://playwright.dev/). Basic configuration together with examples for API tests, UI end-to-end tests and UI integration tests is provided.</br>
 In the project structure, possible solutions for organizing tests can be found. For API tests, structure is made based on different API endpoints, while for UI tests, it's made based on [Page Object Model](https://playwright.dev/docs/pom).</br>
 Also, constants and test data are in separate `.ts` files, so they can be used for both, API and UI tests.</br>
 
@@ -23,7 +23,7 @@ npm init playwright@latest --save-dev
 During instalation proces, depending on your needs, you will need to decide on the following:</br>
 
 - Choose between TypeScript or JavaScript (default is TypeScript).</br>
-- Name of your Tests folder (default is _tests_ or _e2e_ if you already have a _tests_ folder in your project).</br>
+- Name of your Tests folder (default is `tests` or `e2e` if you already have a `tests` folder in your project).</br>
 - Add a GitHub Actions workflow to easily run tests on CI.</br>
 - Install Playwright browsers (default is true).</br>
 
@@ -52,7 +52,7 @@ There you can find (and change if it's needed) configuration related to location
 
 In order to re-use authetication when running tests, `dependencies` option of `projects` in `playwright.config.ts` file is used.</br>
 Project with name `setup` is created, which is run before all tests, in order to authenticate the user and save storage state, so it can be re-used in all tests.</br>
-This approach is chosen instead of `globalSetup` option, because enables authentication steps to be shown in the HTML report together with all executed tests.</br>
+This approach is chosen instead of `globalSetup` option, because it enables authentication steps to be shown in the HTML report together with all executed tests.</br>
 
 ### Test environments
 
@@ -79,3 +79,27 @@ The advantages this extension brings are: even more easier running the tests (on
 
 VS Code extension will use ONLY `.env` file (without specific environment in the name) for loading environment variables.</br>
 In other words, you need to create separate `.env` file and change values of your environment variables according to the environment on which you want to run your tests.</br>
+
+## Continuous Integration
+
+Playwright tests can be executed on CI environments. In this project, configuration for [GitHub Actions](https://github.com/features/actions) is made.</br>
+In `.github/workflows` folder, there are two files created, for two separate GitHub Actions workflows: Playwright Tests and Smoke Tests.</br>
+Both workflows can be triggered in two ways:</br>
+
+- On every push on `main` branch.</br>
+- Manually: in the GitHub repository, under Actions tab, choose the workflow (e.g. Playwright Tests), click on `Run workflow` dropdown and then on `Run workflow` button.</br>
+
+### Playwright Tests workflow
+
+This GitHub Actions workflow executes all tests on `production` environment using all three browsers, on `main` branch.</br>
+There are several separate jobs created:</br>
+
+- `install` job, for installing and cashing dependencies.<br>
+- `ui-test` job, for running UI tests and uploading reports. In order to parallelize UI tests execution, sharding option is used.<br>
+- `api-test` job, for running API tests and uploading report.<br>
+- `report` job, for merging all reports in one and publishing it on [GitHub Pages](https://pages.github.com/).</br>
+
+### Smoke Tests workflow
+
+This GitHub Actions workflow executes only tests with `@smoke` tag, on `production` environment using all three browsers, on `main` branch.</br>
+There is only one job created, `smoke-test`, for installing dependencies, running the tests and uploading report.</br>
