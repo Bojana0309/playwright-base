@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   install:
@@ -156,6 +156,12 @@ jobs:
       contents: read
       pages: write
       id-token: write
+    concurrency:
+      group: 'pages'
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Repository
         id: checkout-repository
@@ -190,11 +196,14 @@ jobs:
         run: |
           mv merged-html-report merged-report/
         shell: bash
-      - name: Upload Merged Playwright HTML Report
-        id: upload-merged-playwright-html-report
-        uses: actions/upload-artifact@v3
-        if: always()
+      - name: Setup Pages
+        id: setup-pages
+        uses: actions/configure-pages@v3
+      - name: Upload Pages Artifact
+        id: upload-pages-artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: mergedReport
           path: merged-report/
-          retention-days: 1
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
