@@ -150,7 +150,7 @@ jobs:
     name: Merge and Publish Playwright Reports
     if: ${{ always() }}
     runs-on: ubuntu-latest
-    needs: [e2e-test, api-test]
+    needs: [ui-test, api-test]
     timeout-minutes: 30
     permissions:
       contents: read
